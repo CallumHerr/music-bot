@@ -15,9 +15,6 @@ module.exports = class Command {
         this.category = info.category;
         this.description = info.description;
         this.arguments = info.arguments || [];
-        this.userPerms = info.userPerms || [];
-        this.botPerms = info.botPerms || [];
-        this.guildOnly = info.guildOnly || false;
         this.data = new SlashCommandBuilder();
     }
 

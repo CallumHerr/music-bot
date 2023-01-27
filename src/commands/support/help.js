@@ -48,18 +48,6 @@ module.exports = class Help extends Command {
                     value: `\`${command.arguments.map(a => `${a.name} - ${a.required ? 'Required' : 'Optional'}`).join('`, `')}\``
                 })
             }
-            if (command.userPerms.length > 0) {
-                embed.addFields({
-                    name: 'User Permissions',
-                    value: `\`${command.userPerms.join('`, `')}\``
-                })
-            }
-            if (command.botPerms.length > 0) {
-                embed.addFields({
-                    name: 'Bot Permissions',
-                    value: `\`${command.botPerms.join('`, `')}\``
-                })
-            }
         }
 
         interaction.reply({ embeds: [embed] })
