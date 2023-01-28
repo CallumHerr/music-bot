@@ -27,6 +27,7 @@ module.exports = class Skip extends Command {
             return;
         }
 
+        music.repeat = false;
         const newSong = music.queue[1]
         music.player.emit(AudioPlayerStatus.Idle, (interaction.guildId, this.client, music));
 

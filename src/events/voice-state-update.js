@@ -6,8 +6,8 @@ module.exports = class VoiceStateUpdate extends Event {
     }
 
     run(oldState, newState) {
-        if (oldState.id !== this.client.user.id) return;
-        if (!newState.channelId) return;
+        if (newState.channelId) return;
+        if (newState.id !== this.client.user.id) return;
 
         const music = this.client.music.get(oldState.channel.guildId);
         if (!music) return;

@@ -28,7 +28,7 @@ module.exports = class Help extends Command {
         const embed = new EmbedBuilder()
             .setColor('Green')
             .setTitle('Help')
-            .setFooter({ text: 'For more projects check out DuckXYZ.com' });
+            .setFooter({ text: 'For more projects check out Callum.one' });
         if (!command) {
                 embed.setDescription('To get info on a specific command try `/help CommandName`');
             for (const cat of this.client.categories) {

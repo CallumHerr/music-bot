@@ -98,7 +98,7 @@ module.exports = class Play extends Command {
                 return interaction.followUp('Sorry i couldn\'t find a video with that name.');
             }
 
-            let videos;
+            let videos = '';
             for (let i = 0; i < searchResults.length; i++) {
                 videos += `[**${i+1}:** ${searchResults[i].title}](${searchResults[i].url})\n`;
             }
@@ -113,23 +113,23 @@ module.exports = class Play extends Command {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('0')
-                        .setStyle(ButtonStyle.Secondary)
+                        .setStyle(ButtonStyle.Primary)
                         .setLabel('1'),
                     new ButtonBuilder()
                         .setCustomId('1')
-                        .setStyle(ButtonStyle.Secondary)
+                        .setStyle(ButtonStyle.Primary)
                         .setLabel('2'),
                     new ButtonBuilder()
                         .setCustomId('2')
-                        .setStyle(ButtonStyle.Secondary)
+                        .setStyle(ButtonStyle.Primary)
                         .setLabel('3'),
                     new ButtonBuilder()
                         .setCustomId('3')
-                        .setStyle(ButtonStyle.Secondary)
+                        .setStyle(ButtonStyle.Primary)
                         .setLabel('4'),
                     new ButtonBuilder()
                         .setCustomId('4')
-                        .setStyle(ButtonStyle.Secondary)
+                        .setStyle(ButtonStyle.Primary)
                         .setLabel('5'),
                 )
 
@@ -142,10 +142,12 @@ module.exports = class Play extends Command {
                 .catch(() => {
                     embed.setColor('Red')
                         .setTitle('Search Failed')
-                        .setDescription('You did not select a song in time.');
-                    interaction.editReply({ embeds: [embed] });
-                    return;
+                        .setDescription('You did not select a song in time.')
+                        .setFooter({ text: 'Try searching using a link instead' });
+                    interaction.editReply({ embeds: [embed], components: [] });
                 })
+
+            if (!int) return;
 
             interaction.deleteReply()
             const song = searchResults[parseInt(int.customId)];
@@ -169,7 +171,6 @@ module.exports = class Play extends Command {
             }
 
             connection.subscribe(player);
-            console.log(music.queue)
             const stream = await youtube.stream(music.queue[0][1]);
             const resource = createAudioResource(stream.stream, {
                 inputType: stream.type
