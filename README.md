@@ -13,6 +13,7 @@ To invite the bot  simply go to the [Discord Developer Portal](https://discord.c
 - Connect
 - Speak
 - Use Voice Activity
+
 After this copy the generated URL at the bottom of the page then paste it in to google and add it to your server.
 
 ## Running the bot
